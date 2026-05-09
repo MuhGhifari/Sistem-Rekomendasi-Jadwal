@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #111112;
+        --cream: #f7f0e4;
+        --sun: #ffb65b;
+        --rose: #ff7a9d;
+        --sea: #4ea6a6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          radial-gradient(1200px 600px at 10% 10%, rgba(255, 182, 91, 0.35), transparent 60%),
+          radial-gradient(900px 500px at 90% 20%, rgba(255, 122, 157, 0.32), transparent 55%),
+          linear-gradient(120deg, #fef8ee, #f2f7f4 55%, #edf3ff);
+        display: grid;
+        place-items: center;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        overflow: hidden;
+      }
+
+      .frame {
+        position: relative;
+        width: min(720px, 92vw);
+        padding: 56px 52px 64px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.66);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 24px 80px rgba(18, 19, 26, 0.15);
+        border: 1px solid rgba(17, 17, 18, 0.08);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(17, 17, 18, 0.08);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: conic-gradient(from 120deg, var(--rose), var(--sun), var(--sea));
+        box-shadow: 0 0 10px rgba(255, 122, 157, 0.7);
+      }
+
+      h1 {
+        margin: 28px 0 14px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.6rem, 5vw, 4rem);
+        line-height: 1.05;
+      }
+
+      p {
+        margin: 0 0 28px;
+        font-size: 1.05rem;
+        max-width: 45ch;
+        color: rgba(17, 17, 18, 0.7);
+      }
+
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .pill {
+        padding: 12px 18px;
+        border-radius: 16px;
+        background: var(--cream);
+        border: 1px solid rgba(17, 17, 18, 0.12);
+        font-size: 0.95rem;
+        box-shadow: 0 10px 25px rgba(17, 17, 18, 0.08);
+      }
+
+      .accent {
+        color: var(--rose);
+      }
+
+      .blob {
+        position: absolute;
+        inset: auto;
+        width: 220px;
+        height: 220px;
+        border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
+        background: linear-gradient(135deg, rgba(255, 182, 91, 0.9), rgba(78, 166, 166, 0.8));
+        filter: blur(0.5px);
+        opacity: 0.65;
+        animation: float 10s ease-in-out infinite;
+      }
+
+      .blob.one {
+        top: -80px;
+        right: -60px;
+      }
+
+      .blob.two {
+        bottom: -100px;
+        left: -70px;
+        width: 260px;
+        height: 260px;
+        background: linear-gradient(135deg, rgba(255, 122, 157, 0.9), rgba(255, 182, 91, 0.8));
+        animation-delay: -3s;
+      }
+
+      .spark {
+        position: absolute;
+        top: 26px;
+        right: 32px;
+        width: 120px;
+        height: 120px;
+        border-radius: 32px;
+        border: 1px dashed rgba(17, 17, 18, 0.2);
+        transform: rotate(18deg);
+        animation: spin 12s linear infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(18px) rotate(6deg);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .frame {
+          padding: 44px 32px 52px;
+        }
+
+        .spark {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="frame">
+      <div class="blob one" aria-hidden="true"></div>
+      <div class="blob two" aria-hidden="true"></div>
+      <div class="spark" aria-hidden="true"></div>
+
+      <div class="badge">
+        <span class="dot" aria-hidden="true"></span>
+        ETS SPK
+      </div>
+
+      <h1>Coming Soon, <span class="accent">Cantik!</span></h1>
+      <p>
+        Sabar ya... masih dalam progress. Silahkan coba lagi disini saat sudah launching
+      </p>
+
+      <div class="stack">
+        <span class="pill">KMKK</span>
+        <span class="pill">AHP</span>
+        <span class="pill">TOPSIS</span>
+      </div>
+    </main>
+  </body>
+</html>
