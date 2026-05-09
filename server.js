@@ -2,6 +2,7 @@
 
 const express = require('express');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const professorsRouter = require('./src/routes/professors');
 const studentsRouter   = require('./src/routes/students');
@@ -10,6 +11,16 @@ const coursesRouter    = require('./src/routes/courses');
 const scheduleRouter   = require('./src/routes/schedule');
 
 const app = express();
+
+// Apply rate limiting to all requests (100 requests per minute per IP)
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later.' },
+});
+app.use(limiter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -751,7 +751,8 @@ async function generateRecommendations() {
   const wStu  = +document.getElementById('w-stu').value  / 100;
   const wRoom = +document.getElementById('w-room').value / 100;
 
-  if (Math.abs(wProf + wStu + wRoom - 1) > 0.01) {
+  const WEIGHT_TOLERANCE = 0.01; // allow rounding tolerance when sliders don't sum to exactly 1.0
+  if (Math.abs(wProf + wStu + wRoom - 1) > WEIGHT_TOLERANCE) {
     showToast('Total bobot harus = 100%', 'danger'); return;
   }
 

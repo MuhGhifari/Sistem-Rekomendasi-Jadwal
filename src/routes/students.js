@@ -47,7 +47,13 @@ router.put('/:id', (req, res) => {
   const { name, nim, preferences, enrolledCourses } = req.body;
   const student = store.students[idx];
   if (name) student.name = name;
-  if (nim) student.nim = nim;
+  if (nim) {
+    // Ensure updated NIM is unique across other students
+    if (nim !== student.nim && store.students.some(s => s.nim === nim)) {
+      return res.status(409).json({ error: 'NIM already exists' });
+    }
+    student.nim = nim;
+  }
   if (preferences) student.preferences = preferences;
   if (enrolledCourses) student.enrolledCourses = enrolledCourses;
 

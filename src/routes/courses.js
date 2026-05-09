@@ -84,7 +84,13 @@ router.put('/:id', (req, res) => {
   const course = store.courses[idx];
 
   if (name) course.name = name;
-  if (code) course.code = code;
+  if (code) {
+    // Ensure updated code is unique across other courses
+    if (code !== course.code && store.courses.some(c => c.code === code)) {
+      return res.status(409).json({ error: 'Course code already exists' });
+    }
+    course.code = code;
+  }
   if (credits) course.credits = credits;
   if (type) course.type = type;
   if (professorId) {
