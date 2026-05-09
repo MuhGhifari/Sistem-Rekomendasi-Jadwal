@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
   if (name) student.name = name;
   if (nim) {
     // Ensure updated NIM is unique across other students
-    if (nim !== student.nim && store.students.some(s => s.nim === nim)) {
+    if (store.students.some(s => s.id !== req.params.id && s.nim === nim)) {
       return res.status(409).json({ error: 'NIM already exists' });
     }
     student.nim = nim;

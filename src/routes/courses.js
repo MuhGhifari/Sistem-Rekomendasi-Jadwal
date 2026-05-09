@@ -86,7 +86,7 @@ router.put('/:id', (req, res) => {
   if (name) course.name = name;
   if (code) {
     // Ensure updated code is unique across other courses
-    if (code !== course.code && store.courses.some(c => c.code === code)) {
+    if (store.courses.some(c => c.id !== req.params.id && c.code === code)) {
       return res.status(409).json({ error: 'Course code already exists' });
     }
     course.code = code;
