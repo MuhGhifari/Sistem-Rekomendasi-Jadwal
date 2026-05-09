@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistem Rekomendasi Jadwal</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ── Sidebar ─────────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <h1>📅 Sistem Rekomendasi Jadwal</h1>
+    <p>Decision Support System</p>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Utama</div>
+    <div class="nav-item active" data-page="dashboard">
+      <span class="icon">🏠</span> Dashboard
+    </div>
+
+    <div class="nav-section">Master Data</div>
+    <div class="nav-item" data-page="professors">
+      <span class="icon">👨‍🏫</span> Dosen
+    </div>
+    <div class="nav-item" data-page="students">
+      <span class="icon">🎓</span> Mahasiswa
+    </div>
+    <div class="nav-item" data-page="rooms">
+      <span class="icon">🏛️</span> Ruangan
+    </div>
+    <div class="nav-item" data-page="courses">
+      <span class="icon">📚</span> Mata Kuliah
+    </div>
+
+    <div class="nav-section">Penjadwalan</div>
+    <div class="nav-item" data-page="recommend">
+      <span class="icon">🤖</span> Rekomendasi
+    </div>
+    <div class="nav-item" data-page="schedule">
+      <span class="icon">📋</span> Jadwal Final
+    </div>
+  </nav>
+  <div class="sidebar-footer">v1.0 · JavaScript</div>
+</aside>
+
+<!-- ── Main ────────────────────────────────────────────────────── -->
+<div class="main">
+  <header class="topbar">
+    <h2 id="page-title">Dashboard</h2>
+    <div class="topbar-right">
+      <button class="btn btn-sm btn-secondary" id="btn-topbar-action" style="display:none"></button>
+    </div>
+  </header>
+
+  <main class="content" id="content">
+    <!-- Pages rendered here -->
+  </main>
+</div>
+
+<!-- ── Generic Modal ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Modal</h3>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer">
+      <button class="btn btn-secondary" id="modal-cancel">Batal</button>
+      <button class="btn btn-primary" id="modal-confirm">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
