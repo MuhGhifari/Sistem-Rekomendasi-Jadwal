@@ -685,9 +685,49 @@
 /* ============================================================
    DATA MASTER
    ============================================================ */
+const KELAS_23 = ['23A', '23B', '23C', '23D', '23E'];
+const KELAS_24 = ['24A', '24B', '24C', '24D', '24E'];
+
+const MK_23_TEMPLATE = [
+  { kode: 'IF101', nama: 'Algoritma & Pemrograman', sks: 3, jenis: 'lab', dosen: 'D01' },
+  { kode: 'IF102', nama: 'Matematika Diskrit', sks: 3, jenis: 'teori', dosen: 'D02' },
+  { kode: 'IF103', nama: 'Pengantar Sistem Informasi', sks: 2, jenis: 'teori', dosen: 'D03' },
+  { kode: 'IF104', nama: 'Bahasa Inggris Teknik', sks: 2, jenis: 'teori', dosen: 'D04' },
+  { kode: 'IF105', nama: 'Logika Informatika', sks: 3, jenis: 'teori', dosen: 'D05' },
+];
+
+const MK_24_TEMPLATE = [
+  { kode: 'IF201', nama: 'Pengantar Teknologi Informasi', sks: 2, jenis: 'teori', dosen: 'D06' },
+  { kode: 'IF202', nama: 'Struktur Data', sks: 3, jenis: 'lab', dosen: 'D07' },
+  { kode: 'IF203', nama: 'Basis Data', sks: 3, jenis: 'lab', dosen: 'D08' },
+  { kode: 'IF204', nama: 'Statistika', sks: 3, jenis: 'teori', dosen: 'D09' },
+  { kode: 'IF205', nama: 'Sistem Operasi', sks: 3, jenis: 'teori', dosen: 'D10' },
+  { kode: 'IF206', nama: 'Algoritma Lanjut', sks: 3, jenis: 'lab', dosen: 'D11' },
+  { kode: 'IF207', nama: 'Jaringan Komputer', sks: 3, jenis: 'teori', dosen: 'D12' },
+  { kode: 'IF208', nama: 'Arsitektur Komputer', sks: 3, jenis: 'teori', dosen: 'D13' },
+];
+
+function expandMKSet(classIds, template) {
+  return classIds.flatMap(kelasId => template.map(item => ({
+    ...item,
+    kode: `${item.kode}-${kelasId}`,
+    kelas: kelasId,
+  })));
+}
+
+function buildMKData() {
+  return [
+    ...expandMKSet(KELAS_23, MK_23_TEMPLATE),
+    ...expandMKSet(KELAS_24, MK_24_TEMPLATE),
+  ];
+}
+
 const MASTER = {
   ruang: [
-    { id: '401', nama: 'R-3A1', kapasitas: 40, jenis: 'biasa' },
+    { id: 'MM', nama: 'Lab. Multimedia', kapasitas: 40, jenis: 'lab' },
+    { id: 'SC', nama: 'Lab. Sistem Cerdas', kapasitas: 40, jenis: 'lab' },
+    { id: 'DS', nama: 'Lab. Data Science', kapasitas: 30, jenis: 'lab' },
+    { id: 'SI', nama: 'Lab. Sistem Informasi', kapasitas: 30, jenis: 'lab' },
     { id: '402', nama: 'R-3A2', kapasitas: 40, jenis: 'biasa' },
     { id: '403', nama: 'R-3A3', kapasitas: 50, jenis: 'biasa' },
     { id: '404', nama: 'R-3A4', kapasitas: 30, jenis: 'biasa' },
@@ -696,15 +736,18 @@ const MASTER = {
     { id: '407', nama: 'R-3A7', kapasitas: 30, jenis: 'biasa' },
     { id: '408', nama: 'R-3A8', kapasitas: 30, jenis: 'biasa' },
     { id: '409', nama: 'R-3A9', kapasitas: 30, jenis: 'biasa' },
-    { id: '410', nama: 'R-3A11', kapasitas: 30, jenis: 'biasa' },
-    { id: '411', nama: 'R-3A10', kapasitas: 30, jenis: 'biasa' },
   ],
   kelas: [
-    { id: 'K1A', nama: '2023-A', jumlah_mhs: 35 },
-    { id: 'K1B', nama: '2023-B', jumlah_mhs: 32 },
-    { id: 'K2A', nama: '2023-C', jumlah_mhs: 28 },
-    { id: 'K2B', nama: '2023-D', jumlah_mhs: 25 },
-    { id: 'K3A', nama: '2023-E', jumlah_mhs: 22 },
+    { id: '23A', nama: '2023-A', jumlah_mhs: 35 },
+    { id: '23B', nama: '2023-B', jumlah_mhs: 32 },
+    { id: '23C', nama: '2023-C', jumlah_mhs: 28 },
+    { id: '23D', nama: '2023-D', jumlah_mhs: 25 },
+    { id: '23E', nama: '2023-E', jumlah_mhs: 22 },
+    { id: '24A', nama: '2024-A', jumlah_mhs: 35 },
+    { id: '24B', nama: '2024-B', jumlah_mhs: 32 },
+    { id: '24C', nama: '2024-C', jumlah_mhs: 28 },
+    { id: '24D', nama: '2024-D', jumlah_mhs: 25 },
+    { id: '24E', nama: '2024-E', jumlah_mhs: 22 },
   ],
   dosen: [
     { id: 'D01', nama: 'Dr. Andi Pratama', preferensi: 'pagi' },
@@ -717,6 +760,11 @@ const MASTER = {
     { id: 'D08', nama: 'Dr. Hendra Lim', preferensi: 'fleksibel' },
     { id: 'D09', nama: 'Dr. Indah Permata', preferensi: 'pagi' },
     { id: 'D10', nama: 'Dr. Joko Sutomo', preferensi: 'sore' },
+    { id: 'D11', nama: 'Dr. Kartika Putri', preferensi: 'pagi' },
+    { id: 'D12', nama: 'Dr. Luthfi Ramadhan', preferensi: 'siang' },
+    { id: 'D13', nama: 'Dr. Maya Sari', preferensi: 'fleksibel' },
+    { id: 'D14', nama: 'Dr. Naufal Hakim', preferensi: 'sore' },
+    { id: 'D15', nama: 'Dr. Putri Wulandari', preferensi: 'siang' },
   ],
   slot: [
     { id: 'S1', label: '08:00–09:40', hari_idx: 0, jam_idx: 0 },
@@ -726,36 +774,10 @@ const MASTER = {
   ],
   hari: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'],
   // Mata kuliah dengan dosen pengampu dan kelas yang ambil
-  // Total: 5 kelas × 4 MK = 20 MK (1 sesi 100 menit per MK, tidak ada double session)
-  // Tujuan kalibrasi: dengan slot terbatas (4/hari × 5 hari = 20), banyak kombinasi konflik dosen
-  // sehingga 3 strategi greedy menghasilkan jadwal berbeda → variasi C1/C2/C3 substantif.
-  mk: [
-    // K1A — 4 MK
-    { kode: 'IF101', nama: 'Algoritma & Pemrograman', sks: 3, jenis: 'lab', dosen: 'D01', kelas: 'K1A' },
-    { kode: 'IF102', nama: 'Matematika Diskrit', sks: 3, jenis: 'teori', dosen: 'D02', kelas: 'K1A' },
-    { kode: 'IF103', nama: 'Pengantar Sistem Informasi', sks: 2, jenis: 'teori', dosen: 'D03', kelas: 'K1A' },
-    { kode: 'IF104', nama: 'Bahasa Inggris Teknik', sks: 2, jenis: 'teori', dosen: 'D04', kelas: 'K1A' },
-    // K1B — 4 MK
-    { kode: 'IF101B', nama: 'Algoritma & Pemrograman', sks: 3, jenis: 'lab', dosen: 'D05', kelas: 'K1B' },
-    { kode: 'IF102B', nama: 'Matematika Diskrit', sks: 3, jenis: 'teori', dosen: 'D02', kelas: 'K1B' },
-    { kode: 'IF105', nama: 'Logika Informatika', sks: 3, jenis: 'teori', dosen: 'D09', kelas: 'K1B' },
-    { kode: 'IF106', nama: 'Pengantar Teknologi Informasi', sks: 2, jenis: 'teori', dosen: 'D08', kelas: 'K1B' },
-    // K2A — 4 MK
-    { kode: 'IF201', nama: 'Struktur Data', sks: 3, jenis: 'lab', dosen: 'D01', kelas: 'K2A' },
-    { kode: 'IF202', nama: 'Basis Data', sks: 3, jenis: 'lab', dosen: 'D03', kelas: 'K2A' },
-    { kode: 'IF203', nama: 'Statistika', sks: 3, jenis: 'teori', dosen: 'D07', kelas: 'K2A' },
-    { kode: 'IF204', nama: 'Sistem Operasi', sks: 3, jenis: 'teori', dosen: 'D10', kelas: 'K2A' },
-    // K2B — 4 MK
-    { kode: 'IF201B', nama: 'Struktur Data', sks: 3, jenis: 'lab', dosen: 'D05', kelas: 'K2B' },
-    { kode: 'IF202B', nama: 'Basis Data', sks: 3, jenis: 'lab', dosen: 'D03', kelas: 'K2B' },
-    { kode: 'IF205', nama: 'Jaringan Komputer', sks: 3, jenis: 'teori', dosen: 'D10', kelas: 'K2B' },
-    { kode: 'IF206', nama: 'Arsitektur Komputer', sks: 3, jenis: 'teori', dosen: 'D04', kelas: 'K2B' },
-    // K3A — 4 MK
-    { kode: 'IF301', nama: 'Rekayasa Perangkat Lunak', sks: 3, jenis: 'teori', dosen: 'D09', kelas: 'K3A' },
-    { kode: 'IF302', nama: 'Pemrograman Web', sks: 3, jenis: 'lab', dosen: 'D01', kelas: 'K3A' },
-    { kode: 'IF303', nama: 'Kecerdasan Buatan', sks: 3, jenis: 'teori', dosen: 'D07', kelas: 'K3A' },
-    { kode: 'IF304', nama: 'Manajemen Proyek TI', sks: 2, jenis: 'teori', dosen: 'D08', kelas: 'K3A' },
-  ]
+  // Total: 65 MK (23: 5 kelas × 5 MK = 25, 24: 5 kelas × 8 MK = 40)
+  // Tujuan kalibrasi: setiap kelas 24 mengambil semua 8 MK yang sama, dan setiap kelas 23 mengambil 5 MK yang sama.
+  // Dengan slot terbatas (4/hari × 5 hari = 20), kombinasi konflik dosen tetap cukup untuk membedakan strategi greedy.
+  mk: buildMKData()
 };
 
 const KRITERIA = [
@@ -1857,7 +1879,25 @@ function renderHasil() {
     <details class="calc-detail mt-4">
       <summary>🔍 Detail Perhitungan TOPSIS (klik untuk expand)</summary>
       <div class="mt-3">
-        <strong>1. Matriks Keputusan:</strong>
+        <strong>0. Matriks Pairwise (Perbandingan Berpasangan Aktor)</strong><br>
+        <span style="font-size:12px; color:#6b7280;">Nilai-nilai perbandingan antar kriteria untuk setiap aktor (Admin, Dosen, Mahasiswa):</span>
+        
+        <div style="margin-top: 12px; padding: 12px; background: #f9fafb; border-radius: 6px;">
+          <strong style="font-size:13px;">Aktor: Admin</strong>
+          ${(() => { const m = buildPairwiseMatrix(HIDDEN_PAIRWISE.admin); return renderMatrixHTML(m, ['C1', 'C2', 'C3'], ['C1', 'C2', 'C3']); })()}
+        </div>
+
+        <div style="margin-top: 10px; padding: 12px; background: #f9fafb; border-radius: 6px;">
+          <strong style="font-size:13px;">Aktor: Dosen</strong>
+          ${(() => { const m = buildPairwiseMatrix(HIDDEN_PAIRWISE.dosen); return renderMatrixHTML(m, ['C1', 'C2', 'C3'], ['C1', 'C2', 'C3']); })()}
+        </div>
+
+        <div style="margin-top: 10px; padding: 12px; background: #f9fafb; border-radius: 6px;">
+          <strong style="font-size:13px;">Aktor: Mahasiswa</strong>
+          ${(() => { const m = buildPairwiseMatrix(HIDDEN_PAIRWISE.mahasiswa); return renderMatrixHTML(m, ['C1', 'C2', 'C3'], ['C1', 'C2', 'C3']); })()}
+        </div>
+
+        <strong class="mt-3 d-block">1. Matriks Keputusan:</strong>
         ${renderMatrixHTML(r.matrixDecision, ['K1', 'K2', 'K3'], ['C1', 'C2', 'C3'])}
 
         <strong class="mt-3 d-block">2. Matriks Ternormalisasi (Euclidean):</strong>
